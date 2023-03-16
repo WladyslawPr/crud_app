@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id "org.sonarqube" version "3.5.0.2730"
 }
 
 group = 'com.example'
@@ -11,6 +12,14 @@ sourceCompatibility = '11'
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "WladyslawPr_crud_app"
+        property "sonar.organization", "wladyslawpr"
+        property "sonar.host.url", "https://sonarcloud.io"
     }
 }
 
