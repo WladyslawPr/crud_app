@@ -1,13 +1,28 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.2.6.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id "org.sonarqube" version "3.5.0.2730"
+    id 'org.springframework.boot' version '2.4.5'
+    id "org.sonarqube" version "4.0.0.2929"
 }
+
+version = '1.0.2'
+group = 'org.gradle.samples'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+
+apply plugin: "org.sonarqube"
+group = 'org.sonarsource.scanner.gradle'
+sonarqube {
+    properties {
+        property "sonar.projectKey", "vlpr_crud_app"
+        property "sonar.organization", "wladyslawpr"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
 
 configurations {
     compileOnly {
@@ -15,12 +30,8 @@ configurations {
     }
 }
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "WladyslawPr_crud_app"
-        property "sonar.organization", "wladyslawpr"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
+compileJava {
+    options.compilerArgs << '-parameters'
 }
 
 repositories {
@@ -28,8 +39,12 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.sonarsource.scanner.api:sonar-scanner-api:2.16.3.1081'
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.7.5')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.15'
 
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
@@ -39,11 +54,11 @@ dependencies {
 
     runtimeOnly 'com.h2database:h2'
 
-    testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
