@@ -5,10 +5,7 @@ import com.example.crud_app.mapper.TaskDTOMapper;
 import com.example.crud_app.model.Task;
 import com.example.crud_app.service.TaskService;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,7 +22,19 @@ public class TaskController {
         return TaskDTOMapper.mapToTaskDTOs(taskService.getTasks(pageNumber,sortDirection));
     }
     @GetMapping("/tasks/{id}")
-    public Task getSingleTask(@PathVariable Long id) {
+    public Task getSingleTask(@PathVariable long id) {
         return taskService.getSingleTask(id);
+    }
+    @PostMapping("/tasks")
+    public Task addTask(@RequestBody Task task) {
+        return taskService.addTask(task);
+    }
+    @PutMapping("/tasks")
+    public Task editTask(@RequestBody Task task) {
+        return taskService.editTask(task);
+    }
+    @DeleteMapping("/tasks/{id}")
+    public void deleteTask(@PathVariable long id) {
+        taskService.deleteTask(id);
     }
 }

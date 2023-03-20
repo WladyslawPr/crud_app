@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS task
+CREATE TABLE Task
 (
-    id          INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     description varchar(100) NOT NULL,
-    status      INT NOT NULL
+    status      int          NOT NULL
 );

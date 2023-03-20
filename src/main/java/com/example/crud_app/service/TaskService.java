@@ -7,5 +7,10 @@ import java.util.List;
 
 public interface TaskService {
     List<Task> getTasks(Integer page, Sort.Direction sort);
-    Task getSingleTask (Long id);
+    Task getSingleTask (long id);
+    Task addTask(Task task);
+    Task editTask(Task task);
+    void deleteTask(long id);
+
+
 }

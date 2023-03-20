@@ -1,2 +1,15 @@
-INSERT INTO task VALUES (1,'aaa',1),(2,'bbb',2),(3,'ccc',0),(4,'ddd',1),(5,'eee',2),(6,'fff',0),(7,'ggg',1),
-                        (8,'hhh',2),(9,'jjj',0),(10,'kkk',1),(11,'lll',2),(12,'mmm',0),(13,'nnn',1),(14,'ooo',2),(15,'ppp',0);
+INSERT INTO task (description, status) values ('aaa',1);
+INSERT INTO task (description, status) values ('bbb',2);
+INSERT INTO task (description, status) values ('ccc',0);
+INSERT INTO task (description, status) values ('ddd',1);
+INSERT INTO task (description, status) values ('eee',2);
+INSERT INTO task (description, status) values ('fff',0);
+INSERT INTO task (description, status) values ('ggg',1);
+INSERT INTO task (description, status) values ('hhh',2);
+INSERT INTO task (description, status) values ('jjj',0);
+INSERT INTO task (description, status) values ('kkk',1);
+INSERT INTO task (description, status) values ('lll',2);
+INSERT INTO task (description, status) values ('mmm',0);
+INSERT INTO task (description, status) values ('nnn',1);
+INSERT INTO task (description, status) values ('ooo',2);
+INSERT INTO task (description, status) values ('ppp',0);
