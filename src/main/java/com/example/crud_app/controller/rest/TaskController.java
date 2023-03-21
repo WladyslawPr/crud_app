@@ -5,6 +5,8 @@ import com.example.crud_app.mapper.TaskDTOMapper;
 import com.example.crud_app.model.Task;
 import com.example.crud_app.service.TaskService;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +18,8 @@ public class TaskController {
         this.taskService = taskService;
     }
     @GetMapping("/tasks")
-    public List<TaskDTO> getTasks(@RequestParam(required = false) Integer page, Sort.Direction sort) {
+    public List<TaskDTO> getTasks(@RequestParam(required = false) Integer page, Sort.Direction sort,
+                                  @AuthenticationPrincipal UsernamePasswordAuthenticationToken user) {
         int pageNumber = page != null && page >= 0 ? page : 0;
         Sort.Direction sortDirection = sort != null ? sort : Sort.Direction.ASC;
         return TaskDTOMapper.mapToTaskDTOs(taskService.getTasks(pageNumber,sortDirection));
