@@ -9,24 +9,23 @@ import java.util.Objects;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String description;
     @Enumerated
     private Status status;
 
     public Task () {}
 
-    public Task (Long id, String description, Status status) {
-        this.id = id;
+    public Task (String description, Status status) {
         this.description = description;
         this.status = status;
     }
 
-    public Long getId () {
+    public long getId () {
         return id;
     }
 
-    public void setId (Long id) {
+    public void setId (long id) {
         this.id = id;
     }
 

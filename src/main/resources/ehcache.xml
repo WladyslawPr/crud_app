@@ -1,0 +1,28 @@
+<config xmlns ='http://www.ehcache.org/v3'
+        xmlns:xsi ="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation ="http://www.ehcache.org/v3
+https://www.ehcache.org/schema/ehcache-core-3.10.xsd">
+
+    <!-- tasks -->
+
+    <cache-template name="default">
+        <expiry>
+            <ttl unit="hours">1</ttl>
+        </expiry>
+        <heap unit="entries">1000</heap>
+    </cache-template>
+
+    <cache alias="Tasks" uses-template="default"/>
+
+    <!-- task -->
+
+    <cache alias="SingleTask">
+        <expiry>
+            <ttl unit="hours">4</ttl>
+        </expiry>
+        <heap unit="entries">500</heap>
+    </cache>
+
+    <!-- -->
+
+</config>
