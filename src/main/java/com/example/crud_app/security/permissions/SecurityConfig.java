@@ -48,11 +48,7 @@ public class SecurityConfig {
     @Autowired
     void registerProvider(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                .withDefaultSchema()
-                .dataSource(dataSource)
-                .withUser("vlpr")
-                .password("{bcrypt}" + new BCryptPasswordEncoder().encode("test"))
-                .roles("USER");
+                .dataSource(dataSource);
     }
 
     @Bean
