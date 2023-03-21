@@ -2,6 +2,9 @@ package com.example.crud_app.service;
 
 import com.example.crud_app.model.Task;
 import com.example.crud_app.repository.TaskRepository;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,10 +20,12 @@ public class TaskServiceImpl implements TaskService {
     public TaskServiceImpl (TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
+    @Cacheable(cacheNames = "Tasks")
     @Override
     public List<Task> getTasks(Integer page, Sort.Direction sortDirection) {
         return taskRepository.findAllByTasks(PageRequest.of(page, PAGE_SIZE, Sort.by(sortDirection, "id")));
     }
+    @Cacheable(cacheNames = "SingleTask", key = "#id")
     @Override
     public Task getSingleTask (long id) {
         return taskRepository.findById(id)
@@ -31,6 +36,7 @@ public class TaskServiceImpl implements TaskService {
     public Task addTask (Task task) {
         return taskRepository.save(task);
     }
+    @CachePut(cacheNames = "SingleTask", key = "#result.id")
     @Transactional
     @Override
     public Task editTask (Task task) {
@@ -39,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
         taskEdited.setStatus(task.getStatus());
         return taskEdited;
     }
-
+    @CacheEvict(cacheNames = "SingleTask")
     @Override
     public void deleteTask (long id) {
         taskRepository.deleteById(id);
