@@ -16,5 +16,5 @@ create table authorities (
 );
 --changeset vlpr:5
 insert into users (id, username, password, enabled)
-values (1, 'test', '{bcrypt}$2a$10$/YEf/5OH4fWLo4OmNS3S8Ogkclp4Z1JP2muXv/m5n9.ZHTKCaiCny', true);
+values (1, 'test', '{bcrypt}', true);
 insert into authorities (username, authority) values ('test','USER');
