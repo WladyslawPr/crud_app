@@ -57,7 +57,7 @@ class TaskControllerTest {
         taskDTOs.sort(taskDTOComparator);
         result.sort(taskDTOComparator);
 
-        verify(taskService).getTasks(eq(0), eq(Sort.Direction.ASC));
+        verify(taskService).getTasks(0, Sort.Direction.ASC);
         assertThat(result, hasSize(2));
         //  assertThat(result, containsInAnyOrder(taskDTOs.toArray()));
         //  assertThat(result, contains(taskDTOs.toArray()));

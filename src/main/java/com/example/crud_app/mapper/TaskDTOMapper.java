@@ -15,7 +15,7 @@ public class TaskDTOMapper {
                 .map(task -> mapToTaskDTO(task))
                 .collect(Collectors.toList());
     }
-    private static TaskDTO mapToTaskDTO (Task task) {
+    protected static TaskDTO mapToTaskDTO (Task task) {
         return TaskDTO.builder()
                 .id(task.getId())
                 .description(task.getDescription())
