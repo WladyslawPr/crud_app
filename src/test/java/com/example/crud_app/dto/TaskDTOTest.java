@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TaskDTOTest {
+class TaskDTOTest {
 
     @Test
-    public void testConstructorAndGetters () {
+    void testConstructorAndGetters () {
         long id = 1L;
         String description = "Task description";
         Status status = Status.DONE;
@@ -21,7 +21,7 @@ public class TaskDTOTest {
     }
 
     @Test
-    public void testBuilder () {
+    void testBuilder () {
         long id = 1L;
         String description = "Task description";
         Status status = Status.DONE;
